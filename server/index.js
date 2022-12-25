@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGO_URI,(err,done)=>{
 app.use('/',server)
 
 
-app.use("/api", apiRoutes);
+
 
 const path = require('path');
 if(process.env.NODE_ENV === 'production'){
