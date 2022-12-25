@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import server from './routes/server.js';
 import morgan from 'morgan';
 import cors from 'cors';
+import path from 'path'
 
 const app = express();
 dotenv.config();
@@ -28,7 +29,7 @@ app.use('/',server)
 
 
 
-const path = require('path');
+
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static(path.join(__dirname, "../client/build")));
   app.get("*",(req,res)=>res.sendFile(path.resolve(__dirname, "../client","build","index.html")))
