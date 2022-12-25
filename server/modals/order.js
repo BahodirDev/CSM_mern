@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 const { ObjectId } = Schema.Types
 const Order = new Schema({
     products: [{ type: ObjectId, ref: "Product" }],
@@ -11,4 +11,4 @@ const Order = new Schema({
         }
 }, { timestamps: true });
 
-export default model('Order', Order);
+module.exports = model('Order', Order);

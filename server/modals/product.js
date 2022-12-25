@@ -1,4 +1,4 @@
-import {Schema,model} from 'mongoose';
+const {Schema,model} = require('mongoose');
 const {ObjectId}  = Schema.Types;
 const productScheme = new Schema({
     name:{
@@ -45,4 +45,4 @@ const productScheme = new Schema({
 {timestamps:true}
 );
 
-export default model('Product',productScheme)
+module.exports = model('Product',productScheme)

@@ -1,6 +1,6 @@
-import jwt from 'jsonwebtoken';
-import User from '../modals/auth.js'
-export const mustSignIn = (req, res, next) => {
+const jwt = require('jsonwebtoken');
+const User = require('../modals/auth.js')
+const mustSignIn = (req, res, next) => {
     const { authorization } = req.headers;
     try {
         let decoded = jwt.verify(authorization, process.env.JWT_SECRET);
@@ -12,12 +12,12 @@ export const mustSignIn = (req, res, next) => {
 
 }
 
-export const isAdmin = async(req, res, next) => {
+const isAdmin = async (req, res, next) => {
     try {
         let user = await User.findById(req.user._id);
-        if(user.role !== 1){
+        if (user.role !== 1) {
             res.status(401).send('unauthorized')
-        }else{
+        } else {
             next()
         }
     } catch (error) {
@@ -25,3 +25,5 @@ export const isAdmin = async(req, res, next) => {
     }
 
 }
+
+module.exports  = {isAdmin,mustSignIn}

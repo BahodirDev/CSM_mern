@@ -1,8 +1,8 @@
-import Category from '../modals/category.js';
-import slugify from 'slugify';
-import Products from '../modals/product.js';
+const Category = require('../modals/category.js');
+const slugify = require('slugify');
+const Products = require('../modals/product.js');
 // add category
-export const addCategory = async (req, res) => {
+ const addCategory = async (req, res) => {
     const { name } = req.body;
 
     if (!name.trim()) {
@@ -24,7 +24,7 @@ export const addCategory = async (req, res) => {
 }
 
 // find One
-export const read = async (req, res) => {
+ const read = async (req, res) => {
     try {
         const { slug } = req.params;
         let category = await Category.findOne({ slug });
@@ -41,7 +41,7 @@ export const read = async (req, res) => {
 }
 
 // update one
-export const update = async (req, res) => {
+ const update = async (req, res) => {
     try {
         const { categoryId } = req.params;
         const { name } = req.body;
@@ -60,7 +60,7 @@ export const update = async (req, res) => {
 }
 
 
-export const remove = async (req, res) => {
+ const remove = async (req, res) => {
     try {
         const { categoryId } = req.params;
         let category = await Category.findByIdAndDelete(categoryId);
@@ -71,7 +71,7 @@ export const remove = async (req, res) => {
     }
 
 }
-export const list = async (req, res) => {
+ const list = async (req, res) => {
     try {
         let categories = await Category.find({});
         return res.json(categories)
@@ -81,11 +81,11 @@ export const list = async (req, res) => {
     }
 }
 
-export const categoryProducts=async(req,res)=>{
+ const categoryProducts = async (req, res) => {
     try {
-        let {slug} = req.params;
-        let category = await Category.findOne({slug});
-        let products = await Products.find({category}).populate('category').select('-photo');
+        let { slug } = req.params;
+        let category = await Category.findOne({ slug });
+        let products = await Products.find({ category }).populate('category').select('-photo');
 
         res.json({
             category,
@@ -95,3 +95,5 @@ export const categoryProducts=async(req,res)=>{
         console.log(error);
     }
 }
+
+module.exports = {addCategory,update,read,remove,categoryProducts,list}

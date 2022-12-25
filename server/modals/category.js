@@ -1,4 +1,4 @@
-import {Schema,model} from 'mongoose';
+const {Schema,model} = require('mongoose');
 const Category = new Schema({
     name:{
         type:String,
@@ -15,4 +15,4 @@ const Category = new Schema({
     }
 },{timestamps:true});
 
-export default model('Category',Category);
+module.exports = model('Category',Category);

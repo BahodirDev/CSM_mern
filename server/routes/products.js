@@ -1,12 +1,12 @@
-import { Router } from 'express';
-import { 
-    addProduct, 
+const { Router } = require('express')
+const {
+    addProduct,
     getToken,
     processToken,
-    getListProduct, getOne, getProductPhoto, deleteProduct, updateProduct, filteredProducts, totalCount, listPage, searchProducts,relatedProducts } from '../controllers/products.js';
+    getListProduct, getOne, getProductPhoto, deleteProduct, updateProduct, filteredProducts, totalCount, listPage, searchProducts, relatedProducts } = require('../controllers/products.js')
 
-import formidable from 'express-formidable';
-import {mustSignIn} from '../middlewares/auth.js'
+const formidable = require('express-formidable')
+const { mustSignIn } = require('../middlewares/auth.js')
 const route = Router();
 
 route.post("/product", formidable(), addProduct);
@@ -32,7 +32,7 @@ route.get('/product/search/:keyword', searchProducts);
 route.get('/related-products/:productId/:categoryId', relatedProducts);
 // category products
 
-route.get('/braintree/token',getToken);
-route.post('/braintree/payment',mustSignIn,processToken);
+route.get('/braintree/token', getToken);
+route.post('/braintree/payment', mustSignIn, processToken);
 
-export default route;
+module.exports = route;

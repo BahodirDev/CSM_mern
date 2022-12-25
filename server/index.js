@@ -1,10 +1,12 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import mongoose from 'mongoose';
-import server from './routes/server.js';
-import morgan from 'morgan';
-import cors from 'cors';
-import path from 'path'
+const express = require('express');
+const dotenv = require('dotenv')
+const mongoose = require('mongoose')
+const server = require('./routes/server');
+const morgan = require('morgan');
+const cors = require('cors');
+const path = require('path')
+
+
 
 const app = express();
 dotenv.config();
